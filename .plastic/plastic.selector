@@ -1,0 +1,4 @@
+repository "FIIT@jornysh@cloud"
+  path "/"
+    br "/main"
+    co "/main"
