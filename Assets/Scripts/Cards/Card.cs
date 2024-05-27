@@ -22,6 +22,8 @@ public class Card
     public List<Enum> abilities;
     public bool isAble;
 
+    public int placementOnDesk;
+
     public Card()
     {
     }
@@ -38,5 +40,6 @@ public class Card
         iconPath = IconPath;
         abilities = Abilities;
         isAble = IsAble;
+        placementOnDesk = 0;
     }
 }

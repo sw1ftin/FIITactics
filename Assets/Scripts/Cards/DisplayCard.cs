@@ -38,8 +38,10 @@ public class DisplayCard : MonoBehaviour
 
     public bool cardBack;
     public static bool staticCardBack;
+    public int placement;
 
     public GameObject Hand;
+    public GameObject EnemyHand;
     public int numberOfCardsInDeck;
 
     // Start is called before the first frame update
@@ -47,6 +49,7 @@ public class DisplayCard : MonoBehaviour
     {
         numberOfCardsInDeck = PlayerDeck.deckSize;
         Hand = GameObject.Find("Hand");
+        EnemyHand = GameObject.Find("EnemyHand");
         displayCard.Add(
             CardDatabase.cardList[displayId > 0 || displayId < CardDatabase.cardList.Count ? displayId : 0]);
     }
@@ -99,6 +102,7 @@ public class DisplayCard : MonoBehaviour
         id = displayCard[0].id;
         name = displayCard[0].name;
         type = displayCard[0].type;
+        placement = displayCard[0].placementOnDesk;
         if (displayCard[0].cost != 0)
         {
             cost = displayCard[0].cost;
@@ -109,6 +113,12 @@ public class DisplayCard : MonoBehaviour
             typeImage.enabled = true;
             costText.enabled = true;
             multiplier.enabled = true;
+        }
+        else
+        {
+            typeImage.enabled = false;
+            costText.enabled = false;
+            multiplier.enabled = false;
         }
 
         abilities = displayCard[0].abilities;
@@ -140,7 +150,7 @@ public class DisplayCard : MonoBehaviour
 
         try
         {
-            if (transform.parent == Hand.transform.parent)
+            if (transform.parent == EnemyHand.transform)
             {
                 cardBack = false;
             }

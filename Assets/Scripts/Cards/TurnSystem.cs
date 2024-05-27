@@ -10,16 +10,18 @@ public class TurnSystem : MonoBehaviour
     public int yourTurn;
     public int isOpponentTurn;
 
-    public int maxMoney = -1;
-    public int currentMoney;
+    public static int maxMoney = -1;
+    public static int currentMoney;
+    public static int currentBlood;
     public Text moneyText;
+    public Text bloodText;
 
     public static bool gotCard;
-        
+
     public Text yourScore;
     public Text opponentScore;
 
-    public List<int> cardTurns = new(4);
+    public List<int> cardTurns;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,10 @@ public class TurnSystem : MonoBehaviour
         isYourTurn = true;
         yourTurn = 1;
         isOpponentTurn = 0;
+        Debug.Log(cardTurns.Count);
+        if (cardTurns.Count != 4)
+            cardTurns = new List<int> { 0, 0, 0, 0 };
+
         for (int i = 0; i < 3; i++)
         {
             cardTurns[i] = 0;
@@ -37,13 +43,9 @@ public class TurnSystem : MonoBehaviour
     void Update()
     {
         moneyText.text = currentMoney.ToString();
-    }
-    
-    public void GetSquirrel()
-    {
-        // var squirrelInstance = Instantiate(squirrelPrefab, transform.position, transform.rotation);
-        // deck.Add(squirrelInstance.GetComponent<Card>());
-        gotCard = true;
+        if (!gotCard)
+            currentBlood = 0;
+        bloodText.text = currentBlood.ToString();
     }
 
     public void EndYourTurn()

@@ -17,7 +17,7 @@ public class PlayerDeck : MonoBehaviour
     public GameObject cardInDeck4;
 
     public GameObject squirrelPrefab;
-    
+
     public GameObject CardToHand;
     public GameObject[] Clones;
     public GameObject Hand;
@@ -69,16 +69,16 @@ public class PlayerDeck : MonoBehaviour
         }
     }
 
-    public void GetCard()
+    public void GetCard(bool isSquirrel = false)
     {
-        StartCoroutine(Draw(1));
+        StartCoroutine(Draw(1, isSquirrel));
         TurnSystem.gotCard = true;
     }
 
     public void GetSquirrel()
     {
-        deck.Add(CardDatabase.cardList[1]);
-        GetCard();
+        // deck.Add(CardDatabase.cardList[1]);
+        GetCard(true);
     }
 
     IEnumerator StartGame()
@@ -101,12 +101,19 @@ public class PlayerDeck : MonoBehaviour
         }
     }
 
-    IEnumerator Draw(int x)
+    IEnumerator Draw(int x, bool isSquirrel = false)
     {
         for (int i = 0; i < x; i++)
         {
             yield return new WaitForSeconds(0);
-            Instantiate(CardToHand, transform.position, transform.rotation);
+            var card = Instantiate(isSquirrel ? squirrelPrefab : CardToHand,
+                transform.localPosition,
+                transform.rotation
+            );
+            card.transform.SetParent(Hand.transform);
+            card.transform.localScale = new Vector3(0.8f, 0.8f, 1);
+            ;
+            // card.transform.eulerAngles = new Vector2(0, 0);
         }
     }
 }

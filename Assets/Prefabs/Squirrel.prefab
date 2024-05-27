@@ -773,6 +773,7 @@ GameObject:
   - component: {fileID: 1754268335530793148}
   - component: {fileID: 4190885437489291712}
   - component: {fileID: 4081750126616979213}
+  - component: {fileID: 6966494369267571582}
   m_Layer: 5
   m_Name: Squirrel
   m_TagString: Untagged
@@ -872,6 +873,7 @@ MonoBehaviour:
   multiplier: {fileID: 1183550079202945730}
   iconImage: {fileID: 1427869155037425389}
   cardBack: 0
+  placement: 0
   Hand: {fileID: 0}
   numberOfCardsInDeck: 0
 --- !u!114 &4081750126616979213
@@ -887,6 +889,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardBack: {fileID: 4106670784719831807}
+--- !u!114 &6966494369267571582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908990813704974144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fd0c6a6b7c9c748a144672e4f9bd5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardPlace1: {fileID: 0}
+  CardPlace2: {fileID: 0}
+  CardPlace3: {fileID: 0}
+  CardPlace4: {fileID: 0}
 --- !u!1 &4941262455177620342
 GameObject:
   m_ObjectHideFlags: 0
