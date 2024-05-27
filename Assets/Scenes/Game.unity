@@ -308,6 +308,14 @@ MonoBehaviour:
   yourScore: {fileID: 1029090732}
   opponentScore: {fileID: 254427815}
   cardTurns: 
+  CardPlace1: {fileID: 0}
+  CardPlace2: {fileID: 0}
+  CardPlace3: {fileID: 0}
+  CardPlace4: {fileID: 0}
+  EnemyCardPlace1: {fileID: 0}
+  EnemyCardPlace2: {fileID: 0}
+  EnemyCardPlace3: {fileID: 0}
+  EnemyCardPlace4: {fileID: 0}
 --- !u!4 &1214192298
 Transform:
   m_ObjectHideFlags: 0
@@ -654,6 +662,10 @@ PrefabInstance:
       propertyPath: sceneId
       value: 2638793194
       objectReference: {fileID: 0}
+    - target: {fileID: 748221626329770121, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1104329439610553011, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -802,6 +814,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1534974036}
+    - target: {fileID: 4969295303365013230, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969295303365013230, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969295303365013230, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969295303365013230, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5915337013203219293, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
       propertyPath: m_Camera
       value: 
@@ -829,6 +857,10 @@ PrefabInstance:
     - target: {fileID: 8333876319099856820, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388814819347981833, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
+      propertyPath: displayId
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8770902009705887245, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
       propertyPath: sceneId
