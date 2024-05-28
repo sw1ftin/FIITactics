@@ -71,8 +71,11 @@ public class PlayerDeck : MonoBehaviour
 
     public void GetCard(bool isSquirrel = false)
     {
-        StartCoroutine(Draw(1, isSquirrel));
-        TurnSystem.gotCard = true;
+        if (!TurnSystem.gotCard)
+        {
+            StartCoroutine(Draw(1, isSquirrel));
+            TurnSystem.gotCard = true;
+        }
     }
 
     public void GetSquirrel()
@@ -85,7 +88,7 @@ public class PlayerDeck : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             Instantiate(CardToHand, transform.position, transform.rotation);
         }
     }
@@ -112,7 +115,6 @@ public class PlayerDeck : MonoBehaviour
             );
             card.transform.SetParent(Hand.transform);
             card.transform.localScale = new Vector3(0.8f, 0.8f, 1);
-            ;
             // card.transform.eulerAngles = new Vector2(0, 0);
         }
     }

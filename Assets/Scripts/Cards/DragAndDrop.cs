@@ -62,7 +62,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             // Debug.Log(transform.position);
 
             var card = gameObject.GetComponents<DisplayCard>()[0];
-            Debug.Log(card);
+            // Debug.Log(card);
 
             if (Vector3.Distance(CardPlace1.transform.position, transform.position) < 10)
             {

@@ -20,7 +20,7 @@ public class PlayCard : MonoBehaviour
 
         if (Card.type == CostType.Sacrifice)
         {
-            Debug.Log(TurnSystem.currentBlood);
+            // Debug.Log(TurnSystem.currentBlood);
             if (TurnSystem.currentBlood >= Card.cost)
             {
                 CardPlace.GetComponent<CardPlace>().isTaken = true;

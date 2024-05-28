@@ -139,7 +139,8 @@ public class DisplayCard : MonoBehaviour
         }
 
         power = displayCard[0].power;
-        healthPoints = displayCard[0].healthPoints;
+        if(healthPoints == 0)
+            healthPoints = displayCard[0].healthPoints;
         iconPath = displayCard[0].iconPath;
 
         nameText.text = name;
