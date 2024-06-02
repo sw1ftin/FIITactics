@@ -51,6 +51,11 @@ public class TurnSystem : MonoBehaviour
         EnemyCardPlace3 = GameObject.Find("CardPlace 3");
         EnemyCardPlace4 = GameObject.Find("CardPlace 4");
 
+        currentMoney = 0;
+        currentBlood = 0;
+
+        moneyText.text = "0";
+        bloodText.text = "0";
 
         if (cardTurns.Count != 4)
             cardTurns = new List<int> { 0, 0, 0, 0 };

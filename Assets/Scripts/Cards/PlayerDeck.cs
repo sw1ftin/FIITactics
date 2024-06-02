@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerDeck : MonoBehaviour
 {
-    public static int deckSize = 40;
+    public static int deckSize;
     public static int handSizeOnStart = 4;
     public int x;
     public List<Card> deck = new();
@@ -27,6 +27,7 @@ public class PlayerDeck : MonoBehaviour
     void Start()
     {
         x = 0;
+        deckSize = 40;
         int maxIndex = CardDatabase.cardList.Count;
         for (int i = 0; i < deckSize; i++)
         {
