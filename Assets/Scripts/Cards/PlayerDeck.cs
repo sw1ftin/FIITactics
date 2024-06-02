@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class PlayerDeck : MonoBehaviour
 {
     public static int deckSize;
-    public static int handSizeOnStart = 4;
+    public static int handSizeOnStart = 6;
     public int x;
     public List<Card> deck = new();
     public static List<Card> staticDeck = new();
