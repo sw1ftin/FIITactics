@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class PlayerDeck : MonoBehaviour
 {
     public static int deckSize = 40;
+    public static int handSizeOnStart = 4;
     public int x;
     public List<Card> deck = new();
     public static List<Card> staticDeck = new();
@@ -86,7 +87,7 @@ public class PlayerDeck : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < handSizeOnStart - 1; i++)
         {
             yield return new WaitForSeconds(0.5f);
             Instantiate(CardToHand, transform.position, transform.rotation);

@@ -17,16 +17,18 @@ public class EnemyCards : MonoBehaviour
         }
 
         GenerateNextMoves();
+        GenerateNextMoves();
+        GenerateNextMoves();
     }
 
     public List<int> GenerateRandomCards(int count = 4)
     {
         var cards = new List<int>();
-        var chanceOfCard = wavesCount < 10 ? 3 : wavesCount < 15 ? 2 : 1;
-        var maxCardId = Math.Min(wavesCount + 1, 8);
+        var chanceOfCard = wavesCount < 5 ? 1 : wavesCount < 10 ? 2 : 3;
+        var maxCardId = Math.Min(wavesCount + 3, 8);
         for (var i = 0; i < count; i++)
         {
-            if (Random.Range(0, chanceOfCard + 1) == 0)
+            if (Random.Range(0, chanceOfCard + 1) != 0)
                 cards.Add(Random.Range(1, maxCardId + 1));
             else
                 cards.Add(0);

@@ -7,9 +7,7 @@ using UnityEngine.UI;
 
 public class TurnSystem : MonoBehaviour
 {
-    public bool isYourTurn;
-    public int yourTurn;
-    public int isOpponentTurn;
+    public int opponentScoreInt;
 
     public static int maxMoney = -1;
     public static int currentMoney;
@@ -18,6 +16,8 @@ public class TurnSystem : MonoBehaviour
     public Text bloodText;
 
     public static bool gotCard;
+    public bool enemyGotCards;
+    public static bool isEnemyAbleToExtraDamage;
 
     public Text yourScore;
     public Text opponentScore;
@@ -51,10 +51,7 @@ public class TurnSystem : MonoBehaviour
         EnemyCardPlace3 = GameObject.Find("CardPlace 3");
         EnemyCardPlace4 = GameObject.Find("CardPlace 4");
 
-        isYourTurn = true;
-        yourTurn = 1;
-        isOpponentTurn = 0;
-        // Debug.Log(cardTurns.Count);
+
         if (cardTurns.Count != 4)
             cardTurns = new List<int> { 0, 0, 0, 0 };
 
@@ -70,12 +67,23 @@ public class TurnSystem : MonoBehaviour
         if (!gotCard)
             currentBlood = 0;
         bloodText.text = currentBlood.ToString();
+
+        if (!enemyGotCards)
+        {
+            GiveEnemyCards();
+            enemyGotCards = true;
+        }
     }
 
-    public void DestroyCard(GameObject card)
+    public void DestroyCard(GameObject card, int cardId = -1)
     {
-        card.transform.SetParent(SacrificedCards.transform);
-        card.SetActive(false);
+        // card.transform.SetParent(SacrificedCards.transform);
+        // card.SetActive(false);
+        Destroy(card);
+        if (cardId != -1)
+        {
+            cardTurns[cardId] = -1;
+        }
     }
 
     public void MakeMoves()
@@ -201,8 +209,10 @@ public class TurnSystem : MonoBehaviour
                 {
                     if (card1.healthPoints < enemyCard1.power)
                     {
-                        opponentScore.text = (Int32.Parse(opponentScore.text) + enemyCard1.power - card1.healthPoints)
-                            .ToString();
+                        if (isEnemyAbleToExtraDamage)
+                            opponentScore.text =
+                                (Int32.Parse(opponentScore.text) + enemyCard1.power - card1.healthPoints)
+                                .ToString();
                         DestroyCard(card1.GameObject());
                         CardPlace1.GetComponent<CardPlace>().isTaken = false;
                         AddMoney();
@@ -235,8 +245,10 @@ public class TurnSystem : MonoBehaviour
                 {
                     if (card2.healthPoints < enemyCard2.power)
                     {
-                        opponentScore.text = (Int32.Parse(opponentScore.text) + enemyCard2.power - card2.healthPoints)
-                            .ToString();
+                        if (isEnemyAbleToExtraDamage)
+                            opponentScore.text =
+                                (Int32.Parse(opponentScore.text) + enemyCard2.power - card2.healthPoints)
+                                .ToString();
                         DestroyCard(card2.GameObject());
                         CardPlace2.GetComponent<CardPlace>().isTaken = false;
                         AddMoney();
@@ -269,8 +281,10 @@ public class TurnSystem : MonoBehaviour
                 {
                     if (card3.healthPoints < enemyCard3.power)
                     {
-                        opponentScore.text = (Int32.Parse(opponentScore.text) + enemyCard3.power - card3.healthPoints)
-                            .ToString();
+                        if (isEnemyAbleToExtraDamage)
+                            opponentScore.text =
+                                (Int32.Parse(opponentScore.text) + enemyCard3.power - card3.healthPoints)
+                                .ToString();
                         DestroyCard(card3.GameObject());
                         CardPlace3.GetComponent<CardPlace>().isTaken = false;
                         AddMoney();
@@ -303,8 +317,10 @@ public class TurnSystem : MonoBehaviour
                 {
                     if (card4.healthPoints < enemyCard4.power)
                     {
-                        opponentScore.text = (Int32.Parse(opponentScore.text) + enemyCard4.power - card4.healthPoints)
-                            .ToString();
+                        if (isEnemyAbleToExtraDamage)
+                            opponentScore.text =
+                                (Int32.Parse(opponentScore.text) + enemyCard4.power - card4.healthPoints)
+                                .ToString();
                         DestroyCard(card4.GameObject());
                         CardPlace4.GetComponent<CardPlace>().isTaken = false;
                         AddMoney();
@@ -329,63 +345,100 @@ public class TurnSystem : MonoBehaviour
         currentMoney++;
     }
 
+    public void GiveEnemyCards()
+    {
+        if (EnemyCardPlace1.transform.childCount == 1)
+        {
+            var displayId = EnemyCards.nextMoves[0].Dequeue();
+            if (displayId != 0)
+            {
+                var card = Instantiate(CardPrefab,
+                    EnemyCardPlace1.transform.position,
+                    transform.rotation
+                );
+                card.transform.SetParent(EnemyCardPlace1.transform);
+                card.transform.localScale = new Vector3(0.8f, 0.8f, 1);
+
+                card.GetComponent<DisplayCard>().ChangeId(displayId);
+                card.SetActive(true);
+
+                cardTurns[0] = 0;
+            }
+        }
+
+        if (EnemyCardPlace2.transform.childCount == 1)
+        {
+            var displayId = EnemyCards.nextMoves[1].Dequeue();
+            if (displayId != 0)
+            {
+                var card = Instantiate(CardPrefab,
+                    EnemyCardPlace2.transform.position,
+                    transform.rotation
+                );
+                card.transform.SetParent(EnemyCardPlace2.transform);
+                card.transform.localScale = new Vector3(0.8f, 0.8f, 1);
+
+                card.GetComponent<DisplayCard>().ChangeId(displayId);
+                card.SetActive(true);
+
+                cardTurns[1] = 0;
+            }
+        }
+
+        if (EnemyCardPlace3.transform.childCount == 1)
+        {
+            var displayId = EnemyCards.nextMoves[2].Dequeue();
+            if (displayId != 0)
+            {
+                var card = Instantiate(CardPrefab,
+                    EnemyCardPlace3.transform.position,
+                    transform.rotation
+                );
+                card.transform.SetParent(EnemyCardPlace3.transform);
+                card.transform.localScale = new Vector3(0.8f, 0.8f, 1);
+
+                card.GetComponent<DisplayCard>().ChangeId(displayId);
+                card.SetActive(true);
+
+                cardTurns[2] = 0;
+            }
+        }
+
+        if (EnemyCardPlace4.transform.childCount == 1)
+        {
+            var displayId = EnemyCards.nextMoves[3].Dequeue();
+            if (displayId != 0)
+            {
+                var card = Instantiate(CardPrefab,
+                    EnemyCardPlace4.transform.position,
+                    transform.rotation
+                );
+                card.transform.SetParent(EnemyCardPlace4.transform);
+                card.transform.localScale = new Vector3(0.8f, 0.8f, 1);
+
+                card.GetComponent<DisplayCard>().ChangeId(displayId);
+                card.SetActive(true);
+
+                cardTurns[3] = 0;
+            }
+        }
+    }
+
     public void EndYourTurn()
     {
-        // You can end your turn only after taking 1 card or squirrel
         if (gotCard)
         {
             MakeMoves();
 
             MakeEnemyMoves();
 
-            if (EnemyCardPlace1.transform.childCount == 1)
-            {
-                var card = Instantiate(CardPrefab,
-                    transform.position,
-                    transform.rotation
-                );
-                card.transform.SetParent(EnemyCardPlace1.transform);
-                card.transform.localScale = new Vector3(0.8f, 0.8f, 1);
-                var displayId = EnemyCards.nextMoves[0].Dequeue();
-                card.SetActive(displayId != 0);
-            }
+            GiveEnemyCards();
 
-            if (EnemyCardPlace2.transform.childCount == 1)
-            {
-                var card = Instantiate(CardPrefab,
-                    transform.position,
-                    transform.rotation
-                );
-                card.transform.SetParent(EnemyCardPlace2.transform);
-                card.transform.localScale = new Vector3(0.8f, 0.8f, 1);
-                var displayId = EnemyCards.nextMoves[0].Dequeue();
-                card.SetActive(displayId != 0);
-            }
+            for (var i = 0; i < 4; i++)
+                if (cardTurns[i] != -1)
+                    cardTurns[i]++;
 
-            if (EnemyCardPlace3.transform.childCount == 1)
-            {
-                var card = Instantiate(CardPrefab,
-                    transform.position,
-                    transform.rotation
-                );
-                card.transform.SetParent(EnemyCardPlace3.transform);
-                card.transform.localScale = new Vector3(0.8f, 0.8f, 1);
-                var displayId = EnemyCards.nextMoves[0].Dequeue();
-                card.SetActive(displayId != 0);
-            }
-
-            if (EnemyCardPlace4.transform.childCount == 1)
-            {
-                var card = Instantiate(CardPrefab,
-                    transform.position,
-                    transform.rotation
-                );
-                card.transform.SetParent(EnemyCardPlace4.transform);
-                card.transform.localScale = new Vector3(0.8f, 0.8f, 1);
-                var displayId = EnemyCards.nextMoves[0].Dequeue();
-                card.SetActive(displayId != 0);
-            }
-
+            EnemyCards.wavesCount++;
             gotCard = false;
         }
     }

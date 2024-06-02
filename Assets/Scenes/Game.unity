@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -155,6 +154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &468070448 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8830686679135170186, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
+  m_PrefabInstance: {fileID: 1270301373602112529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,11 +315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6580027bdf143544f870b84123643993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isYourTurn: 0
-  yourTurn: 0
-  isOpponentTurn: 0
+  opponentScoreInt: 0
   moneyText: {fileID: 1743094069}
   bloodText: {fileID: 380608894}
+  enemyGotCards: 0
   yourScore: {fileID: 1029090732}
   opponentScore: {fileID: 254427815}
   CardPlace1: {fileID: 0}
@@ -327,7 +330,7 @@ MonoBehaviour:
   EnemyCardPlace3: {fileID: 0}
   EnemyCardPlace4: {fileID: 0}
   SacrificedCards: {fileID: 14753512}
-  CardPrefab: {fileID: 4908990813704974144, guid: 9589ad26c6aafce47bfed3a5f4be0e10, type: 3}
+  CardPrefab: {fileID: 1873034946}
 --- !u!4 &1214192298
 Transform:
   m_ObjectHideFlags: 0
@@ -456,8 +459,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4190885437489291712, guid: 9726d3da9b9f99d4da8cf4417e2dab2e, type: 3}
+      propertyPath: Hand
+      value: 
+      objectReference: {fileID: 176106975}
+    - target: {fileID: 4190885437489291712, guid: 9726d3da9b9f99d4da8cf4417e2dab2e, type: 3}
+      propertyPath: EnemyHand
+      value: 
+      objectReference: {fileID: 468070448}
+    - target: {fileID: 4190885437489291712, guid: 9726d3da9b9f99d4da8cf4417e2dab2e, type: 3}
       propertyPath: displayId
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190885437489291712, guid: 9726d3da9b9f99d4da8cf4417e2dab2e, type: 3}
+      propertyPath: numberOfCardsInDeck
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4908990813704974144, guid: 9726d3da9b9f99d4da8cf4417e2dab2e, type: 3}
       propertyPath: m_Name
@@ -742,6 +757,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1873034946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4908990813704974144, guid: 9726d3da9b9f99d4da8cf4417e2dab2e, type: 3}
+  m_PrefabInstance: {fileID: 1521497905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1879314225 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1794332752179294464, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
@@ -1162,11 +1182,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8388814819347981833, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
       propertyPath: displayId
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8492937777655975737, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
       propertyPath: displayId
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8770902009705887245, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
       propertyPath: sceneId
@@ -1197,7 +1217,11 @@ PrefabInstance:
     - {fileID: 3829052837980872173, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
     - {fileID: 8770902009705887245, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
     - {fileID: 680346703375670391, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 748221626329770121, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
+    - {fileID: 6624131139545477690, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
+    - {fileID: 2077775701251553735, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
+    - {fileID: 852799714575008185, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1794332752179294464, guid: 6cfd5a86b2c90a74fa9478f89abd1963, type: 3}
       insertIndex: 12

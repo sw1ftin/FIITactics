@@ -89,6 +89,12 @@ public class DisplayCard : MonoBehaviour
         }
     }
 
+    public void ChangeId(int displayId)
+    {
+        displayCard.Clear();
+        displayCard.Add(CardDatabase.cardList[displayId]);
+    }
+
 // Update is called once per frame
     void Update()
     {
@@ -139,7 +145,7 @@ public class DisplayCard : MonoBehaviour
         }
 
         power = displayCard[0].power;
-        if(healthPoints == 0)
+        if (healthPoints == 0)
             healthPoints = displayCard[0].healthPoints;
         iconPath = displayCard[0].iconPath;
 
