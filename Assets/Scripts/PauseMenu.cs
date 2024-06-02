@@ -15,6 +15,11 @@ public class PauseMenu : MonoBehaviour
         Canvas.SetActive(!isOpen);
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Scenes/Game");
+    }
+
     public void ExitToMenu()
     {
         SceneManager.LoadScene("Scenes/Main Menu");
