@@ -7,7 +7,7 @@ public class TutorialButtons : MonoBehaviour
 {
     public Image Screenshot;
     public static int imageId;
-    public static int tutorialImagesCount = 2;
+    public static int tutorialImagesCount = 6;
     public Text Steps;
 
     public void NextImage()
